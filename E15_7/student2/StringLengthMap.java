@@ -18,7 +18,7 @@ public class StringLengthMap
       {
 
          // Create your map here
-         . . .
+         Map<Integer, String> words = new TreeMap<>();
 
          while (in.hasNext())
          {
@@ -27,7 +27,13 @@ public class StringLengthMap
 
             // Update the map here
             // Modify Worked Example 15.1
-            . . .
+            Integer count = words.get(len);
+            if(count == null){
+				count = 1;
+			}
+			else
+				count ++;
+			words.put(len, word);
 
 
          }

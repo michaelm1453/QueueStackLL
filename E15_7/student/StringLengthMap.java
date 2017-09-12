@@ -18,7 +18,7 @@ public class StringLengthMap
       {
 
          // Create your map here
-         . . .
+         Map<Integer, String> words = new TreeMap<>();
 
          while (in.hasNext())
          {
@@ -27,13 +27,17 @@ public class StringLengthMap
 
             // Update the map here
             // Use the Java 8 merge() method
-            . . .
+            words.merge(len, word, (oldValue, value) -> oldValue.concat(" " + word));
 
 
          }
 
          // Print the strings, in increasing order of their length
          // Use this format: 1: i, a, i
+         for(Integer length: words.keySet())
+         {
+			 System.out.println(length + ": " + words.get(length));
+		 }
       }
       catch (FileNotFoundException e)
       {
