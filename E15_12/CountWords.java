@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
 import java.util.TreeSet;
+import java.io.FileNotFoundException;
 /**
    Write a program that reads text from a file and breaks
    it up into individual words. Insert the words into a tree set.
@@ -18,28 +19,28 @@ public class CountWords
       {
 
          // Create your TreeSet here
-         . . .
+         TreeSet<String> words = new TreeSet<String>();
 
          int numWords = 0;
          while (in.hasNext())
          {
             String word = clean(in.next());
-            numWords++;
             // Add the word to the set here
-            . . .
+            words.add(word);
 
          }
 
          // Print the words
-         . . .
+         for(String word : words){
+         	System.out.println(word);
+         	numWords++;
+		}
          System.out.println("Number of words: " + numWords);
-         // Print the size of the resulting set
-         . . .
 
       }
       catch (FileNotFoundException e)
       {
-         System.out.println("Cannot open: " + filename);
+         System.out.println("Cannot open: " + fileName);
       }
    }
 

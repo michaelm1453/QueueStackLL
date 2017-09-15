@@ -19,6 +19,7 @@ public class StringLengthMap
 
          // Create your map here
          Map<Integer, String> words = new TreeMap<>();
+         String value = "";
 
          while (in.hasNext())
          {
@@ -27,19 +28,22 @@ public class StringLengthMap
 
             // Update the map here
             // Modify Worked Example 15.1
-            Integer count = words.get(len);
-            if(count == null){
-				count = 1;
-			}
+            //Integer count = words.get(len);
+			String str = words.get(len);
+			if(str == null)
+				str = word;
 			else
-				count ++;
-			words.put(len, word);
+				str = str + ", " + word;
+            //value += ", " +word;
+			words.put(len, str);
 
 
          }
 
          // Print the strings, in increasing order of their length
          // Use this format: 1: i, a, i
+         for(Integer length: words.keySet())
+         	System.out.println(length + words.get(length));
       }
       catch (FileNotFoundException e)
       {
