@@ -23,17 +23,25 @@ public class HTMLChecker
       try (Scanner in = new Scanner(new File(filename)))
       {
          // Your code goes here
-         while(in.hasNext()){
+         while(in.hasNext()){//This loop goes through and takes out the opening tags (the ones without '/').
+         //So, we need to check if the first one removed from the stack (last one added) is the first one encountered by the thing
 			 next = in.next();
 			 System.out.println(next);
 			 if(!(next.contains("/")))
 			 	stacked.push(next);
+			 else{
+			 	if(next == stacked.pop())
+
+			}
 
 
 			 for(String tag : stacked){
 				String sub = tag.substring(tag.indexOf('<')+1, tag.indexOf('>'));
 				if(next.contains(sub))
 					System.out.println(sub + next);
+					//last one into stack, first one to be taken out
+					//last tag that was put in, needs to be the first one encountered when tested
+
 			 }
 
 		 }
