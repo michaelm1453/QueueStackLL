@@ -28,12 +28,12 @@ public class HTMLChecker
          while(in.hasNext()){//This loop goes through and takes out the opening tags (the ones without '/').
              next = in.next();
              if(!(next.contains("/")))
-                stacked.push(next);
-             else{
-                String fromStack = stacked.peek();
-                String subStack = fromStack.substring(fromStack.indexOf('<')+1, fromStack.indexOf('>'));
+                stacked.push(next); //All of the opening tags go here
+             else{ //If the next tag DOES have a '/', it goes here
+                String fromStack = stacked.peek(); //takes the most recent element from the stack
+                String subStack = fromStack.substring(fromStack.indexOf('<')+1, fromStack.indexOf('>')); //gets what's inside the tag
                 if(next.contains(subStack))
-                    stacked.pop();
+                    stacked.pop(); //if the first closing tag matches the most recent opening tag, remove the opening tag from the stack
                 }
             }    
         
