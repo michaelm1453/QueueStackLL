@@ -1,21 +1,26 @@
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class Grid
 {
    private static final int SIZE = 10;
    int[][] pixels = new int[SIZE][SIZE];
    Queue<Integer> numbers = new LinkedList<>();
-   for(int x = 1; x <= SIZE*SIZE; x ++){
-	   numbers.add(x);
-   }
+
 
    /**
       Flood fill, starting with the given row and column.
    */
    public void floodfill(int row, int column)
    {
+	  for(int x = 1; x <= SIZE*SIZE; x ++){
+	  	  numbers.add(x);
+   	  }
       while(numbers.size() > 0){
-		  if(row < SIZE){
+		  if(row < SIZE && column < SIZE){
+			  pixels[row][column] = numbers.remove();
+			  row ++;
+			  column ++;
 
 		  }
 	  }
