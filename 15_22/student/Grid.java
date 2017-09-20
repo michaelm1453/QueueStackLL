@@ -17,12 +17,19 @@ public class Grid
 	  	  numbers.add(x);
    	  }
       while(numbers.size() > 0){
-		  if(row < SIZE && column < SIZE){
-			  pixels[row][column] = numbers.remove();
-			  row ++;
-			  column ++;
-
-		  }
+	      if(pixels[row][column] == null){
+		    pixels[row][column] = numbers.remove();	
+	      }
+	      else{
+		    if(pixels[row+1][column] ==null)
+			    row++
+	            else if(pxels[row][column+1] ==null)
+			    column++;
+		    else if(pixels[row-1][column] ==null)
+			    row --;
+		    else if(pixells[row][column-1] == null)
+			    column--;
+	      }
 	  }
    }
 
