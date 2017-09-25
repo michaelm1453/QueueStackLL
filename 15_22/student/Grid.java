@@ -35,24 +35,27 @@ public class Grid
 	        	num++;
 	        	System.out.println(row + " " + (column+1) +" " +num);
 	        }
-			
+
 		    if(row -1 >=0 &&pixels[row-1][column] ==0){//checks west
 		    	coords.add(new Coordinate(row-1, column, num));  //adds to the queue a coordinate with a value
 		    	num++;
 		    	System.out.println((row-1) + " " + column+" " + num);
 		    }
-			    
+
 		    if(column-1 >= 0&&pixels[row][column-1] ==0){//checks south
 		    	coords.add(new Coordinate(row, column-1, num));//adds to the queue a coordinate with a value
 		    	num++;
 		    	System.out.println(row+ " " + (column-1) +" " + num);
 		    }
 			while(coords.size() > 0){
-				Coordinate c = coords.remove();
-				x = c.x; y = c.y; number = c.num;
-				pixels[x][y] = number;
-				floodfill(x,y);//goes back through the queue
-				
+				for(Coordinate c : coords)
+					System.out.println(c);
+
+				//Coordinate c = coords.remove();
+				//x = c.x; y = c.y; number = c.num;
+				//pixels[x][y] = number;
+				//floodfill(x,y);//goes back through the queue
+
 			}
 
 	  }
