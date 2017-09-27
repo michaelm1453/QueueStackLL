@@ -48,7 +48,7 @@ public class Grid
 		    	num++;
 		    	System.out.println(row+ " " + (column-1) +" " + num);
 		    }
-			while(coords.size() > 0){
+			while(coords.size() > 0){//Try putting the while loop at the beginning of the code
 				//for(Coordinate c : coords)
 					//System.out.println(c);
 
