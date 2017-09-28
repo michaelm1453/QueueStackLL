@@ -9,6 +9,7 @@ public class Grid
    int num = 1;
    int x = 0; int y = 0; int number = 0;
    Stack<Coordinate> coords = new Stack<>();
+   int countS = 0; int countN = 0; int countE = 0; int countW = 0;
 	//So you need to make a pair class to hold the x and y values for the coordinates
 	//You need to use all if statements, otherwise it'll go on the first one only
 	//Call the floodfill recursively to go to the next coordinate
@@ -19,45 +20,43 @@ public class Grid
    */
    public void floodfill(int row, int column)
    {
-      while(num <100){
+      while(num <=100){
 	        if(pixels[row][column] == 0){//for the first point
 	    	    coords.push(new Coordinate(row, column, num));  //adds to the stack a coordinate with a value
 		        num ++;
-		        System.out.println(row+ " " + column+ " " + num);
+		        pixels[row][column] = num; //Since the point had already been 'filled' it won't be refilled over
   			}
-		    if(row+1 < 10&& pixels[row+1][column] ==0){//checks south
-		    	coords.push(new Coordinate(row+1, column, num));  //adds to the stack  a coordinate with a value
-			    num++;
-			    System.out.println((row+1) + " " + column +" " + num);
-			}
+	        
+	        while(coords.size() > 0){
 
-	        if(column +1 < 10 && pixels[row][column+1] == 0){//checks east
-	        	coords.push(new Coordinate(row, column+1, num));  //adds to the stack a coordinate with a value
-	        	num++;
-	        	System.out.println(row + " " + (column+1) +" " +num);
+			    if(row+1 < 10 && pixels[row+1][column] ==0){//checks south
+			    	coords.push(new Coordinate(row+1, column, num));  //adds to the stack  a coordinate with a value
+				    num++; countS++;
+				    pixels[row+1][column] = num; //Since the point had already been 'filled' it won't be refilled over
+				}
+	
+		        if(column +1 < 10 && pixels[row][column+1] == 0){//checks east
+		        	coords.push(new Coordinate(row, column+1, num));  //adds to the stack a coordinate with a value
+		        	num++; countE++;
+		        	pixels[row][column+1] = num; //Since the point had already been 'filled' it won't be refilled over
+		        }
+	
+			    if(row -1 >=0 &&pixels[row-1][column] ==0){//checks north
+			    	coords.push(new Coordinate(row-1, column, num));  //adds to the stack a coordinate with a value
+			    	num++; countN++;
+			    	pixels[row-1][column] = num; //Since the point had already been 'filled' it won't be refilled over
+			    }
+	
+			    if(column-1 >= 0&&pixels[row][column-1] ==0){//checks west
+			    	coords.push(new Coordinate(row, column-1, num));//adds to the stack a coordinate with a value
+			    	num++; countW++;
+			    	pixels[row][column-1] = num; //Since the point had already been 'filled' it won't be refilled over
+			    }
+			    Coordinate c = coords.pop();
+			    x = c.x; y = c.y; number = c.num;
+			    pixels[x][y] = number;
+			    floodfill(x,y);
 	        }
-
-		    if(row -1 >=0 &&pixels[row-1][column] ==0){//checks west
-		    	coords.push(new Coordinate(row-1, column, num));  //adds to the stack a coordinate with a value
-		    	num++;
-		    	System.out.println((row-1) + " " + column+" " + num);
-		    }
-
-		    if(column-1 >= 0&&pixels[row][column-1] ==0){//checks south
-		    	coords.push(new Coordinate(row, column-1, num));//adds to the stack a coordinate with a value
-		    	num++;
-		    	System.out.println(row+ " " + (column-1) +" " + num);
-		    }
-			while(coords.size() > 0){//Try putting the while loop at the beginning of the code, or putting the if statements inside the while loop
-				//for(Coordinate c : coords)
-					//System.out.println(c);
-
-				Coordinate c = coords.pop();
-				x = c.x; y = c.y; number = c.num;
-				pixels[x][y] = number;
-				floodfill(x,y);//goes back through the stack
-
-			}
 
 	  }
    }
@@ -72,6 +71,7 @@ public class Grid
             r = r + String.format("%4d", pixels[i][j]);
          r = r + "\n";
       }
+      System.out.println("North" + countN + "S" + countS + "E" + countE + "W");
       return r;
    }
 }
