@@ -1,3 +1,6 @@
+//Michael Mardyla
+//Software Engineering
+//Floodfill
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -22,11 +25,11 @@ public class Grid
       while(num <101){
 	        if(pixels[row][column] == 0){//for the first point
 	    	    coords.push(new Coordinate(row, column, num));  //adds to the stack a coordinate with a value
-		        
+
 		        pixels[row][column] = num; //Since the point had already been 'filled' it won't be refilled over
 		        num ++;
   			}
-	        
+
 	        while(coords.size() > 0){
 
 			    if(row+1 < 10 && pixels[row+1][column] ==0){//checks south
@@ -34,19 +37,19 @@ public class Grid
 				    pixels[row+1][column] = num; //Since the point had already been 'filled' it won't be refilled over
 				    num ++;
 				}
-	
+
 		        if(column +1 < 10 && pixels[row][column+1] == 0){//checks east
 		        	coords.push(new Coordinate(row, column+1, num));  //adds to the stack a coordinate with a value
 		        	pixels[row][column+1] = num; //Since the point had already been 'filled' it won't be refilled over
 		        	num ++;
 		        }
-	
+
 			    if(row -1 >=0 &&pixels[row-1][column] ==0){//checks north
 			    	coords.push(new Coordinate(row-1, column, num));  //adds to the stack a coordinate with a value
 			    	pixels[row-1][column] = num; //Since the point had already been 'filled' it won't be refilled over
 			    	num ++;
 			    }
-	
+
 			    if(column-1 >= 0&&pixels[row][column-1] ==0){//checks west
 			    	coords.push(new Coordinate(row, column-1, num));//adds to the stack a coordinate with a value
 			    	pixels[row][column-1] = num; //Since the point had already been 'filled' it won't be refilled over
